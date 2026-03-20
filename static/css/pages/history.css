@@ -1,0 +1,27 @@
+/* ── Match History ── */
+.match-list {
+  width: 100%;
+  max-width: 600px;
+}
+
+.match-card {
+  background-color: #16213e;
+  border-radius: 10px;
+  padding: 18px 24px;
+  margin-bottom: 16px;
+  border-left: 4px solid #e94560;
+}
+
+.match-card.win  { border-left-color: #4caf50; }
+.match-card.loss { border-left-color: #e94560; }
+
+.match-card p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #a8b2d8;
+}
+
+.match-card p span {
+  color: #eaeaea;
+  font-weight: 600;
+}

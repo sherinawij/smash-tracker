@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <title>Document</title>
-</head>
-<body>
-    <img src="{{url_for('static', filename='images/mario.png')}}" width="600">
-    <h2>Welcome {{curent_user}}</h2>
+{% extends "base.html" %}
 
-    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-</body>
-</html>
+{% block title %}Dashboard{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+<img src="{{ url_for('static', filename='images/mario.png') }}" width="600">
+<h2>Welcome {{ current_user.username }}</h2>
+{% endblock %}

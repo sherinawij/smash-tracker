@@ -1,26 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <title>Document</title>
-</head>
-<body>
-    <h2>Add Match</h2>
-    <form method="POST">
-        <label>Opponent:</label><br>
-        <input type="text" name="opponent"><br><br>
-        <label>Character:</label><br>
-        <input type="text" name="character"><br><br>
-        <label>Result:</label><br>
-        <select name="result">
-            <option value="win">Win</option>
-            <option value="loss">Loss</option>
-        </select>
-        <button type="submit">Add Match</button>
-    </form>
+{% extends "base.html" %}
 
-    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-</body>
-</html>
+{% block title %}Add Match{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/add_match.css') }}">
+{% endblock %}
+
+{% block content %}
+<h2>Add Match</h2>
+
+<form method="POST">
+    <label>Player 1:</label><br>
+    <input type="text" name="player1"><br><br>
+
+    <label>Player 2:</label><br>
+    <input type="text" name="player2"><br><br>
+
+    <label>Character 1:</label><br>
+    <input type="text" name="character1"><br><br>
+
+    <label>Character 2:</label><br>
+    <input type="text" name="character2"><br><br>
+
+    <label>Result:</label><br>
+    <select name="result">
+        <option value="win">Win</option>
+        <option value="loss">Loss</option>
+    </select>
+
+    <button type="submit">Add Match</button>
+</form>
+{% endblock %}

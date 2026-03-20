@@ -1,22 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <title>Match History</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Match History{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/history.css') }}">
+{% endblock %}
+
+{% block content %}
 <h2>Match History</h2>
+
 {% for match in matches %}
 <p>
-    Opponent: {{match.opponent}} <br>
-    Character: {{match.character}} <br>
-    Result: {{match.result}}
+    Player 1: {{ match.player1 }} <br>
+    Player 2: {{ match.player2 }} <br>
+    Character 1: {{ match.character1 }} <br>
+    Character 2: {{ match.character2 }} <br>
+    Result: {{ match.result }} <br>
 </p>
 <hr>
 {% endfor %}
-
-<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,21 @@
+/* ── Add Match page ── */
+.add-match-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.add-match-container .card {
+  margin-top: 20px;
+}
+
+/* Style the result dropdown specifically for this form */
+.add-match-container select {
+  cursor: pointer;
+}
+
+/* Back link */
+.add-match-container .link-muted {
+  margin-top: 16px;
+}
