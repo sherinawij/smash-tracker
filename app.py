@@ -10,7 +10,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = 'login'
+login_manager.login_view = 'login' # type: ignore
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -25,7 +25,8 @@ class User(db.Model, UserMixin):
 
 @app.route('/')
 def home():
-    return "Hello, Smash App!"
+    return render_template('base.html')
+    # return "Hello, Smash App!"
 
 @app.route('/dashboard')
 @login_required
@@ -68,18 +69,22 @@ def signup():
     
 class match(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    opponent = db.Column(db.String(100), nullable=False)
-    character = db.Column(db.String(100), nullable=False)
+    player1 = db.Column(db.String(100), nullable=False)
+    player2 = db.Column(db.String(100), nullable=False)
+    character1 = db.Column(db.String(100), nullable=False)
+    character2 = db.Column(db.String(100), nullable=False)
     result = db.Column(db.String(100), nullable=False)
     userID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 @app.route('/add_match', methods=['GET', 'POST'])
 def add_match():
     if request.method == 'POST':
-        opponent = request.form['opponent']
-        character = request.form['character']
+        player1 = request.form['player1']
+        player2 = request.form['player2']
+        character1 = request.form['character1']
+        character2 = request.form['character2']
         result = request.form['result']
-        newMatch = match(opponent=opponent, character=character, result=result, userID=current_user.id)
+        newMatch = match(player1=player1, player2=player2, character1=character1, character2=character2, result=result, userID=current_user.id)
         db.session.add(newMatch)
         db.session.commit()
         return redirect(url_for('dashboard'))

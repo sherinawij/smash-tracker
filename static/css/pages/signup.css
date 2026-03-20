@@ -1,0 +1,11 @@
+/* ── Signup page ── */
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.signup-container .card {
+  margin-top: 20px;
+}
