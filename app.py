@@ -2,7 +2,8 @@ from flask import Flask, request, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from datetime import datetime, timedelta
+from collections import Counter
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
@@ -17,7 +18,6 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 db = SQLAlchemy(app)
-
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), nullable=False, unique=True)
@@ -26,12 +26,25 @@ class User(db.Model, UserMixin):
 @app.route('/')
 def home():
     return render_template('home.html')
-    # return "Hello, Smash App!"
 
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html', current_user=current_user)
+    matches = match.query.filter_by(userID=current_user.id).all()
+    total = len(matches)
+    one_week_ago = datetime.utcnow()-timedelta(days=7)
+    weekly_matches = match.query.filter(match.userID==current_user.id, match.date >= one_week_ago).all()
+    weekly_count = len(weekly_matches)
+    win_matches = match.query.filter(match.userID==current_user.id, match.result == "Win").all()
+    percentage = len(win_matches)*100/total if total > 0 else 0
+    characters = [m.character1 for m in matches]
+    counter = Counter(characters)
+    if counter:
+        most_character, count = counter.most_common(1)[0]
+    else:
+        most_character = "No data"
+        count = 0
+    return render_template('dashboard.html', current_user=current_user, total=total, weekly_count=weekly_count, percentage=percentage, most_character=most_character, count=count)
 
 @app.route('/logout')
 def logout():
@@ -75,8 +88,10 @@ class match(db.Model):
     character2 = db.Column(db.String(100), nullable=False)
     result = db.Column(db.String(100), nullable=False)
     userID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    date = db.Column(db.DateTime, default=datetime.utcnow)
 
 @app.route('/add_match', methods=['GET', 'POST'])
+@login_required
 def add_match():
     if request.method == 'POST':
         player1 = request.form['player1']
@@ -92,6 +107,7 @@ def add_match():
         return render_template('add_match.html')
     
 @app.route('/history', methods=['GET'])
+@login_required
 def history(): 
     matches = match.query.filter_by(userID=current_user.id).all()
     return render_template('history.html', matches=matches)
@@ -114,6 +130,9 @@ def edit_match(match_id):
         return redirect(url_for('history'))
 
     return render_template('edit_match.html', match=cur_match)
-
+@app.route('/analytics')
+@login_required
+def analytics():
+    return render_template('analytics.html')
 if __name__ == '__main__':
     app.run(debug=True)
