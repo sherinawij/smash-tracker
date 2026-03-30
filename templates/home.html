@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<div class="row g-4 mb-4">
+    <div class="col-12 col-md-4">
+        <div class="stat-card">
+            <div class="stat-label">Matches Played</div>
+            <div class="stat-value">128</div>
+            <div class="stat-trend trend-green">+12 this week</div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+        <div class="stat-card">
+            <div class="stat-label">Win Rate</div>
+            <div class="stat-value">74%</div>
+            <div class="stat-trend trend-blue">Strong performance</div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+        <div class="stat-card">
+            <div class="stat-label">Main Character</div>
+            <div class="stat-value">Mario</div>
+            <div class="stat-trend trend-pink">Most picked fighter</div>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-card mb-4">
+    <h2 class="section-title">Quick Actions</h2>
+    <p class="section-subtitle">Jump back into the things you use most.</p>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-12 col-md-6 col-xl-4">
+        <div class="feature-card">
+            <div class="feature-icon icon-green">
+                <i class="bi bi-plus-circle-fill"></i>
+            </div>
+            <h3 class="feature-title">Add New Match</h3>
+            <p class="feature-text">Record a new battle result and keep your match history updated.</p>
+            <a href="{{ url_for('add_match') }}" class="pretty-btn btn-gradient-green">Start Now</a>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-xl-4">
+        <div class="feature-card">
+            <div class="feature-icon icon-yellow">
+                <i class="bi bi-clock-history"></i>
+            </div>
+            <h3 class="feature-title">View History</h3>
+            <p class="feature-text">See your past matches, outcomes, and track improvement over time.</p>
+            <a href="{{ url_for('history') }}" class="pretty-btn btn-gradient-yellow">Open History</a>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-xl-4">
+        <div class="feature-card">
+            <div class="feature-icon icon-blue">
+                <i class="bi bi-bar-chart-fill"></i>
+            </div>
+            <h3 class="feature-title">Open Dashboard</h3>
+            <p class="feature-text">Check your stats, trends, and overall performance in one view.</p>
+            <a href="{{ url_for('dashboard') }}" class="pretty-btn btn-gradient-blue">See Stats</a>
+        </div>
+    </div>
+</div>
+
+<div class="content-card">
+    <h2 class="section-title">About Your Portal</h2>
+    <p class="section-subtitle">
+        This is your main control center for tracking battles, reviewing history,
+        and improving your performance over time.
+    </p>
+</div>
+
+{% endblock %}

@@ -25,7 +25,7 @@ class User(db.Model, UserMixin):
 
 @app.route('/')
 def home():
-    return render_template('base.html')
+    return render_template('home.html')
     # return "Hello, Smash App!"
 
 @app.route('/dashboard')
