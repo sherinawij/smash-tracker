@@ -1,1 +1,40 @@
 {% extends "base.html" %}
+
+{% block styles%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/edit_match.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="match-card">
+    <p>Player 1: {{ match.player1 }}</p>
+    <p>Player 2: {{ match.player2 }}</p>
+    <p>Character 1: {{ match.character1 }}</p>
+    <p>Character 2: {{ match.character2 }}</p>
+    <p>Result: {{ match.result }}</p>
+</div>
+
+<div class="new-match-card">
+    <form method="POST">
+        <label>Player 1:</label><br>
+        <input type="text" name="player1"><br><br>
+
+        <label>Player 2:</label><br>
+        <input type="text" name="player2"><br><br>
+
+        <label>Character 1:</label><br>
+        <input type="text" name="character1"><br><br>
+
+        <label>Character 2:</label><br>
+        <input type="text" name="character2"><br><br>
+
+        <label>Result:</label><br>
+        <select name="result">
+            <option value="win">Win</option>
+            <option value="loss">Loss</option>
+        </select>
+
+        <button type="submit">Add Match</button>
+    </form>
+</div>
+
+{% endblock %}

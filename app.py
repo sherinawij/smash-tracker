@@ -96,5 +96,24 @@ def history():
     matches = match.query.filter_by(userID=current_user.id).all()
     return render_template('history.html', matches=matches)
 
+@app.route('/edit_match/<int:match_id>', methods=['GET','POST'])
+def edit_match(match_id):
+
+    cur_match = match.query.filter_by(id=match_id).first()
+    if (cur_match == None):
+        return 'Match not found'
+    
+    if (request.method == 'POST'):
+        cur_match.player1 = request.form['player1']
+        cur_match.player2 = request.form['player2']
+        cur_match.character1 = request.form['character1']
+        cur_match.character2 = request.form['character2']
+        cur_match.result = request.form['result']
+
+        db.session.commit()
+        return redirect(url_for('history'))
+
+    return render_template('edit_match.html', match=cur_match)
+
 if __name__ == '__main__':
     app.run(debug=True)
