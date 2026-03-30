@@ -12,8 +12,8 @@
   border-left: 4px solid #e94560;
 }
 
-.match-card.win  { border-left-color: #4caf50; }
-.match-card.loss { border-left-color: #e94560; }
+.match-card.Win  { border-left-color: #4caf50; }
+.match-card.Loss { border-left-color: #e94560; }
 
 .match-card p {
   margin: 4px 0;
