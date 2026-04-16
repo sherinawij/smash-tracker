@@ -115,5 +115,10 @@ def edit_match(match_id):
 
     return render_template('edit_match.html', match=cur_match)
 
+@app.route('/profile')
+def profile():
+    matches = match.query.filter_by(userID=current_user.id)
+    return render_template('profile.html', current_user=current_user, matches=matches)
+
 if __name__ == '__main__':
     app.run(debug=True)
