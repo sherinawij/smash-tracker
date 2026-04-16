@@ -318,3 +318,12 @@ body.red .content-card:first-of-type {
 .filter-bar select {
     min-width: 180px;
 }
+.edit-match {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.delete-btn {
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+}

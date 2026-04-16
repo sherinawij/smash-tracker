@@ -194,6 +194,21 @@ def edit_match(match_id):
 
     return render_template('edit_match.html', match=cur_match)
 
+@app.route('/delete_match/<int:match_id>')
+def delete_match(match_id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    cur_match = match.query.filter_by(
+        id=match_id,
+        userID=session['user_id']
+    ).first()
+
+    if cur_match:
+        db.session.delete(cur_match)
+        db.session.commit()
+
+    return redirect(url_for('history'))
 @app.route('/analytics')
 def analytics():
     if 'user_id' not in session:
