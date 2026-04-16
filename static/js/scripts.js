@@ -1,4 +1,3 @@
-// ── Flash message auto-dismiss ──
 document.addEventListener('DOMContentLoaded', () => {
   const flashes = document.querySelectorAll('.flash');
   flashes.forEach(el => {
@@ -10,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// ── Form validation ──
 document.addEventListener('DOMContentLoaded', () => {
   const forms = document.querySelectorAll('form');
 
@@ -37,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function showError(form, message) {
-  // Remove any existing error
   const existing = form.querySelector('.form-error');
   if (existing) existing.remove();
 
@@ -47,14 +44,13 @@ function showError(form, message) {
   form.prepend(err);
 }
 
-// ── Match result badge colour (history page) ──
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.match-card').forEach(card => {
     const badge = card.querySelector('.result-badge');
     if (badge) {
       const result = badge.textContent.trim().toLowerCase();
-      card.classList.add(result);    // adds .win or .loss for border colour
-      badge.classList.add(result);   // colours the badge itself
+      card.classList.add(result);  
+      badge.classList.add(result); 
     }
   });
 });

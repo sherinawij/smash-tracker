@@ -10,12 +10,10 @@
   margin-top: 20px;
 }
 
-/* Style the result dropdown specifically for this form */
 .add-match-container select {
   cursor: pointer;
 }
 
-/* Back link */
 .add-match-container .link-muted {
   margin-top: 16px;
 }
