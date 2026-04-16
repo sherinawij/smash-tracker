@@ -8,7 +8,30 @@ body {
     background: linear-gradient(135deg, #111827, #1f2937);
     color: #f3f4f6;
 }
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
 
+
+
+.hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.large-btn {
+    width: 280px;
+    text-align: center;
+    padding: 18px 20px;
+    font-size: 18px;
+    border-radius: 16px;
+}
 .page-layout {
     min-height: 100vh;
     display: flex;

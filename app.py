@@ -145,7 +145,7 @@ def add_match():
         db.session.add(newMatch)
         db.session.commit()
 
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('add_match'))
 
     return render_template('add_match.html')
 

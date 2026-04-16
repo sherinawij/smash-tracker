@@ -12,41 +12,48 @@
         and discover your strongest fighters.
     </p>
 
-    <div class="home-buttons">
-        {% if 'user_id' in session %}
 
-            <a href="{{ url_for('add_match') }}" class="pretty-btn">
+    <div class="hero-content">
+        <img src="{{ url_for('static', filename='images/mario.png') }}"
+            width="600" >
+    
+
+        <div class="hero-actions">
+            {% if 'user_id' in session %}
+            <a href="{{ url_for('add_match') }}" class="pretty-btn large-btn">
                 🎮 Start New Match
             </a>
 
-            <a href="{{ url_for('analytics') }}" class="pretty-btn">
+            <a href="{{ url_for('analytics') }}" class="pretty-btn large-btn">
                 📊 Go to Analytics
             </a>
+            {% else %}
 
-        {% else %}
-
-            <a href="{{ url_for('login') }}" class="pretty-btn">
+            <a href="{{ url_for('login') }}" class="pretty-btn large-btn">
                 🔑 Login
             </a>
 
-            <a href="{{ url_for('signup') }}" class="pretty-btn">
+            <a href="{{ url_for('signup') }}" class="pretty-btn large-btn">
                 ✨ Sign Up
             </a>
 
         {% endif %}
+        </div>
     </div>
+
+        
     <h3 class="section-title">Choose Theme</h3>
 
     <div class="home-buttons">
-        <a href="{{ url_for('home', theme='blue') }}" class="pretty-btn">
+        <a href="{{ url_for('home', theme='blue') }}" class="pretty-btn large-btn">
             Blue
         </a>
 
-        <a href="{{ url_for('home', theme='purple') }}" class="pretty-btn">
+        <a href="{{ url_for('home', theme='purple') }}" class="pretty-btn large-btn">
             Purple
         </a>
 
-        <a href="{{ url_for('home', theme='red') }}" class="pretty-btn">
+        <a href="{{ url_for('home', theme='red') }}" class="pretty-btn large-btn">
             Red
         </a>
     </div>
