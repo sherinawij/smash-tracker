@@ -130,6 +130,12 @@ def edit_match(match_id):
         return redirect(url_for('history'))
 
     return render_template('edit_match.html', match=cur_match)
+
+@app.route('/profile')
+def profile():
+    matches = match.query.filter_by(userID=current_user.id)
+    return render_template('profile.html', current_user=current_user, matches=matches)
+
 @app.route('/analytics')
 @login_required
 def analytics():

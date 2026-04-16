@@ -5,7 +5,14 @@
 {% endblock %}
 
 {% block content %}
+
+<div class="go-back">
+    <button onclick="location.href=' {{ url_for('history') }}'">Back</button>
+</div>
+
 <div class="match-card">
+    <h1> Current Match</h1>
+
     <p>Player 1: {{ match.player1 }}</p>
     <p>Player 2: {{ match.player2 }}</p>
     <p>Character 1: {{ match.character1 }}</p>
@@ -33,7 +40,7 @@
             <option value="Loss">Loss</option>
         </select>
 
-        <button type="submit">Add Match</button>
+        <button type="submit">Confirm Changes</button>
     </form>
 </div>
 
