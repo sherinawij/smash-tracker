@@ -35,6 +35,21 @@
 
         {% endif %}
     </div>
+    <h3 class="section-title">Choose Theme</h3>
+
+    <div class="home-buttons">
+        <a href="{{ url_for('home', theme='blue') }}" class="pretty-btn">
+            Blue
+        </a>
+
+        <a href="{{ url_for('home', theme='purple') }}" class="pretty-btn">
+            Purple
+        </a>
+
+        <a href="{{ url_for('home', theme='red') }}" class="pretty-btn">
+            Red
+        </a>
+    </div>
 </div>
 
 <div class="actions-grid">

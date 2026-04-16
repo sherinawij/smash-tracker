@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for, session
+from flask import Flask, request, render_template, redirect, url_for, session, make_response
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta
 from collections import Counter
@@ -27,6 +27,13 @@ class match(db.Model):
 
 @app.route('/')
 def home():
+    theme = request.args.get('theme')
+
+    if theme:
+        response = redirect(url_for('home'))
+        response.set_cookie('theme_color', theme, max_age=60 * 60 * 24 * 30)
+        return response
+
     return render_template('home.html')
 
 @app.route('/login', methods=['GET', 'POST'])

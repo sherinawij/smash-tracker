@@ -256,3 +256,52 @@ input:focus, select:focus {
     width: 100%;
     max-width: 1100px;
 }
+body.blue {
+    background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.25), transparent 40%),
+        radial-gradient(circle at bottom right, rgba(124,58,237,0.22), transparent 40%),
+        linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+body.purple {
+    background:
+        radial-gradient(circle at top left, rgba(168,85,247,0.28), transparent 40%),
+        radial-gradient(circle at bottom right, rgba(236,72,153,0.22), transparent 40%),
+        linear-gradient(135deg, #1e1b4b, #312e81);
+}
+
+body.red {
+    background:
+        radial-gradient(circle at top left, rgba(239,68,68,0.25), transparent 40%),
+        radial-gradient(circle at bottom right, rgba(249,115,22,0.22), transparent 40%),
+        linear-gradient(135deg, #1f1111, #3b1d1d);
+}
+
+body.blue .header-card,
+body.blue .content-card:first-of-type {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+}
+
+body.purple .header-card,
+body.purple .content-card:first-of-type {
+    background: linear-gradient(135deg, #7c3aed, #c026d3);
+}
+
+body.red .header-card,
+body.red .content-card:first-of-type {
+    background: linear-gradient(135deg, #dc2626, #f97316);
+}
+.edit-card {
+    width: 100%;
+    max-width: 1100px;
+    background: rgba(31, 41, 55, 0.95);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    margin-top: 20px;
+}
+
+.edit-card form {
+    max-width: 500px;
+}

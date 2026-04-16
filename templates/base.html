@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
     {% block styles %}{% endblock %}
 </head>
-<body>
-
+<body class="{{ request.cookies.get('theme_color', 'blue') }}">
     <div class="page-layout">
 
         <aside class="sidebar">
