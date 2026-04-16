@@ -153,8 +153,22 @@ def add_match():
 def history():
     if 'user_id' not in session:
         return redirect(url_for('login'))
-
-    matches = match.query.filter_by(userID=session['user_id']).all()
+    query = match.query.filter_by(userID=session['user_id'])
+    result = request.args.get('result')
+    character = request.args.get('character')
+    opponent = request.args.get('opponent')
+    sort = request.args.get('sort')
+    if result:
+        query = query.filter(match.result == result)
+    if character:
+        query = query.filter(match.character1.ilike(f"%{character}%"))
+    if opponent:
+        query = query.filter(match.player2.ilike(f"%{opponent}%"))
+    if sort == 'old':
+        query = query.order_by(match.date.asc())
+    else:
+        query = query.order_by(match.date.desc())
+    matches = query.all()
     return render_template('history.html', matches=matches)
 
 @app.route('/edit_match/<int:match_id>', methods=['GET', 'POST'])
