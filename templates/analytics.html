@@ -1,1 +1,112 @@
 {% extends "base.html" %}
+
+{% block title %}Analytics{% endblock %}
+
+{% block content %}
+
+<div class="content-card">
+    <h2 class="section-title">Battle Analytics</h2>
+    <p class="section-subtitle">
+        Dive deeper into your performance and discover your strongest fighters and toughest battles.
+    </p>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-label">Current Streak</div>
+        <div class="stat-value">{{ current_streak }}</div>
+        <div class="stat-trend trend-green">
+            {% if streak_type == "Win" %}
+                Win streak
+            {% else %}
+                Loss streak
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-label">Best Character</div>
+        <div class="stat-value">{{ best_character }}</div>
+        <div class="stat-trend trend-blue">
+            {{ best_character_rate }}% win rate
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-label">Most Played Opponent</div>
+        <div class="stat-value">{{ most_opponent }}</div>
+        <div class="stat-trend trend-pink">
+            {{ opponent_count }} matches
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-label">Last 5 Matches</div>
+        <div class="stat-value">{{ last5_wins }}/5</div>
+        <div class="stat-trend trend-yellow">
+            Wins in your last 5 games
+        </div>
+    </div>
+</div>
+
+<div class="content-card">
+    <h2 class="section-title">Character Performance</h2>
+    <p class="section-subtitle">
+        Compare how well you perform with each fighter.
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Character</th>
+                <th>Matches</th>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th>Win Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for char in character_stats %}
+            <tr>
+                <td>{{ char.name }}</td>
+                <td>{{ char.matches }}</td>
+                <td>{{ char.wins }}</td>
+                <td>{{ char.losses }}</td>
+                <td>
+                    {% if char.win_rate >= 70 %}
+                        <span class="trend-green">{{ char.win_rate }}%</span>
+                    {% elif char.win_rate >= 50 %}
+                        <span class="trend-blue">{{ char.win_rate }}%</span>
+                    {% else %}
+                        <span class="trend-pink">{{ char.win_rate }}%</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="actions-grid">
+    <div class="feature-card">
+        <h3 class="feature-title">Strongest Matchup</h3>
+        <p class="feature-text">
+            You perform best against <strong>{{ strongest_matchup }}</strong>.
+        </p>
+        <p class="section-subtitle">
+            {{ strongest_rate }}% win rate in this matchup.
+        </p>
+    </div>
+
+    <div class="feature-card">
+        <h3 class="feature-title">Hardest Matchup</h3>
+        <p class="feature-text">
+            You struggle the most against <strong>{{ hardest_matchup }}</strong>.
+        </p>
+        <p class="section-subtitle">
+            {{ hardest_rate }}% win rate in this matchup.
+        </p>
+    </div>
+</div>
+
+{% endblock %}

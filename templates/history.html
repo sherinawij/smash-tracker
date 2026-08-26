@@ -7,22 +7,52 @@
 {% endblock %}
 
 {% block content %}
-<h2>Match History</h2>
+<div class="history-page">
 
-{% for match in matches %}
-<div class="match-card {{match.result}}">
-    <p>Player 1: {{ match.player1 }}</p>
-    <p>Player 2: {{ match.player2 }}</p>
-    <p>Character 1: {{ match.character1 }}</p>
-    <p>Character 2: {{ match.character2 }}</p>
-    <p>Result: {{ match.result }}</p>
-    <p>{{ match.date }}</p>
-    <div class="edit-match">
-        <a class="btn btn-primary" href="{{url_for('edit_match', match_id=match.id)}}">
-            Edit Match
-        </a>
+    <div class="content-card">
+        <h2>Match History</h2>
+
+        <form method="GET" class="filter-bar">
+            <select name="result">
+                <option value="">All Results</option>
+                <option value="Win">Wins Only</option>
+                <option value="Loss">Losses Only</option>
+            </select>
+
+            <input type="text" name="character" placeholder="Character">
+
+            <input type="text" name="opponent" placeholder="Opponent">
+
+            <select name="sort">
+                <option value="new">Newest First</option>
+                <option value="old">Oldest First</option>
+            </select>
+
+            <button type="submit">Apply Filters</button>
+        </form>
     </div>
-</div>
 
-{% endfor %}
+    {% for match in matches %}
+    <div class="match-card {{ match.result }}">
+        <p>Player 1: {{ match.player1 }}</p>
+        <p>Player 2: {{ match.player2 }}</p>
+        <p>Character 1: {{ match.character1 }}</p>
+        <p>Character 2: {{ match.character2 }}</p>
+        <p>Result: {{ match.result }}</p>
+        <p>{{ match.date }}</p>
+
+        <div class="edit-match">
+            <a class="pretty-btn" href="{{ url_for('edit_match', match_id=match.id) }}">
+                Edit Match
+            </a>
+
+            <a class="pretty-btn delete-btn"
+            href="{{ url_for('delete_match', match_id=match.id) }}">
+                Delete
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
 {% endblock %}

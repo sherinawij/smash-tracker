@@ -4,85 +4,82 @@
 
 {% block content %}
 
-<div class="hero-card text-center mb-5">
-
+<div class="content-card">
     <h2 class="hero-title">🏰 Home Portal</h2>
 
-    <p class="hero-text mx-auto">
+    <p class="hero-text">
         Welcome to the Smash Player Portal. Track your matches, analyze your performance,
         and discover your strongest fighters.
     </p>
 
-    <div class="d-flex flex-column align-items-center gap-3 mt-4">
 
-        {% if current_user.is_authenticated %}
+    <div class="hero-content">
+        <img src="{{ url_for('static', filename='images/mario.png') }}"
+            width="600" >
+    
 
-            <a href="{{ url_for('add_match') }}"
-               class="pretty-btn btn-gradient-green w-50">
+        <div class="hero-actions">
+            {% if 'user_id' in session %}
+            <a href="{{ url_for('add_match') }}" class="pretty-btn large-btn">
                 🎮 Start New Match
             </a>
 
-            <a href="{{ url_for('dashboard') }}"
-               class="pretty-btn btn-gradient-blue w-50">
-                📊 Go to Dashboard
+            <a href="{{ url_for('analytics') }}" class="pretty-btn large-btn">
+                📊 Go to Analytics
             </a>
+            {% else %}
 
-        {% else %}
-
-            <a href="{{ url_for('login') }}"
-               class="pretty-btn btn-gradient-green w-50">
+            <a href="{{ url_for('login') }}" class="pretty-btn large-btn">
                 🔑 Login
             </a>
 
-            <a href="{{ url_for('signup') }}"
-               class="pretty-btn btn-gradient-yellow w-50">
+            <a href="{{ url_for('signup') }}" class="pretty-btn large-btn">
                 ✨ Sign Up
             </a>
 
         {% endif %}
+        </div>
+    </div>
 
+        
+    <h3 class="section-title">Choose Theme</h3>
+
+    <div class="home-buttons">
+        <a href="{{ url_for('home', theme='blue') }}" class="pretty-btn large-btn">
+            Blue
+        </a>
+
+        <a href="{{ url_for('home', theme='purple') }}" class="pretty-btn large-btn">
+            Purple
+        </a>
+
+        <a href="{{ url_for('home', theme='red') }}" class="pretty-btn large-btn">
+            Red
+        </a>
     </div>
 </div>
 
-
-<div class="row g-4">
-
-    <div class="col-md-4">
-        <div class="feature-card text-center">
-            <div class="feature-icon icon-green">
-                <i class="bi bi-trophy-fill"></i>
-            </div>
-            <h5 class="feature-title">Track Matches</h5>
-            <p class="feature-text">
-                Record every battle and keep a full history of your gameplay.
-            </p>
-        </div>
+<div class="actions-grid">
+    <div class="feature-card">
+        <h3 class="feature-title">Track Matches</h3>
+        <p class="feature-text">
+            Record every battle and keep a full history of your gameplay.
+        </p>
     </div>
 
-    <div class="col-md-4">
-        <div class="feature-card text-center">
-            <div class="feature-icon icon-blue">
-                <i class="bi bi-graph-up"></i>
-            </div>
-            <h5 class="feature-title">Analyze Performance</h5>
-            <p class="feature-text">
-                Monitor your win rate and weekly performance trends.
-            </p>
-        </div>
+    <div class="feature-card">
+        <h3 class="feature-title">Analyze Performance</h3>
+        <p class="feature-text">
+            Monitor your win rate and weekly performance trends.
+        </p>
     </div>
 
-    <div class="col-md-4">
-        <div class="feature-card text-center">
-            <div class="feature-icon icon-yellow">
-                <i class="bi bi-controller"></i>
-            </div>
-            <h5 class="feature-title">Find Your Main</h5>
-            <p class="feature-text">
-                Discover your most played character and improve your strategy.
-            </p>
-        </div>
+    <div class="feature-card">
+        <h3 class="feature-title">Find Your Main</h3>
+        <p class="feature-text">
+            Discover your most played character and improve your strategy.
+        </p>
     </div>
-
 </div>
 
 {% endblock %}
